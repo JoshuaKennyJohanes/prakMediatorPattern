@@ -21,7 +21,21 @@ public class App {
         newChatRoom.registerUser(ujang);
         newChatRoom.registerUser(hana);
 
+        //bikin badwords yang akan disensor nanti di chatroom
+        newChatRoom.addBadwords("goblok");
+        newChatRoom.addBadwords("anjing");
+        newChatRoom.addBadwords("ngentod");
+
+
+        //coba private message
         newChatRoom.sendBroadcast(budi, "Halo Semuanya!");
         newChatRoom.sendPrivateMessage(budi, "hana", "Rahasisa ya ini!");
+
+
+        //coba badwords message
+        newChatRoom.sendBroadcast(andi, "ngentod lu semua!");
+        
+
+
     }
 }
