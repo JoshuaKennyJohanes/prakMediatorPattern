@@ -22,8 +22,8 @@ public class User {
     }
 
     public void sendGroupMessage(String message){
-        for(int i = 0 ; contacts.size() ; i++){
-            
+        for(int i = 0 ; i < contacts.size() ; i++){
+            contacts.get(i).receiveMessage(this, message);
         }
     }
 
