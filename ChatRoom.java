@@ -15,12 +15,29 @@ public class ChatRoom {
 
     public void sendBroadcast(User sender, String message){
         System.out.println("["+sender.getName()+"]: Memproses pengiriman pesan grup");
-        System.out.println("[ChatRoom - General] (Broadcast dari "+sender.getName()+"): "+message);
+        System.out.print("[ChatRoom - General]");
+        sender.send(message);
 
         for(int i = 0;  i < members.size() ; i++){
-            members.get(i).receiveMessage(sender, message);
+            if(!members.get(i).getName().equalsIgnoreCase(sender.getName())){
+                members.get(i).receiveMessage(sender, message);
+            }
         }
+    }
 
+    public void sendPrivateMessage(User sender, String recipientName, String message){
+        System.out.println("["+sender.getName()+"]: Mengirim Pesan private ke: "+recipientName+" .....");
+        System.out.print("[Chatroom - General] (Private "+sender.getName()+"-> ");
+        sender.sendPrivate(recipientName, message);
+        System.out.println("");
+    
+        
+        for(int i = 0 ; i < members.size() ; i++){
+            if(members.get(i).getName().equalsIgnoreCase(recipientName)){
+                User recipient = new User(members.get(i).getName());
+                System.out.println("["+recipient.getName()+"] Menerima pesan privat dari "+sender.getName()+": "+message);
+            }
+        }
     }
 
 }

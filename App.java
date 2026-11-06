@@ -22,5 +22,6 @@ public class App {
         newChatRoom.registerUser(hana);
 
         newChatRoom.sendBroadcast(budi, "Halo Semuanya!");
+        newChatRoom.sendPrivateMessage(budi, "hana", "Rahasisa ya ini!");
     }
 }

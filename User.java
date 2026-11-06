@@ -1,10 +1,7 @@
-import java.util.List;
 
 public class User {
     String name;
-    List<User> contacts;
-
-
+    
     public User(String name){
         this.name = name;
     }
@@ -17,14 +14,17 @@ public class User {
         System.out.println("["+getName()+"] Menerima Pesan dari "+sender.getName()+": "+message);
     }
 
-    public void addContact(User user){
-        contacts.add(user);
+    public void setChatRoom(ChatRoom chatRoom){
+        chatRoom.registerUser(this);
     }
 
-    public void sendGroupMessage(String message){
-        for(int i = 0 ; i < contacts.size() ; i++){
-            contacts.get(i).receiveMessage(this, message);
-        }
+    public void send(String message){
+        System.out.print("(Broad Cast Dari "+getName()+"): "+message);
+        System.out.println("");
+    }
+
+    public void sendPrivate(String recipientName, String message){
+        System.out.print("Cici ): "+message);
     }
 
     public String getName(){
