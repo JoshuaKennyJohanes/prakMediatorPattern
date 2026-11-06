@@ -16,7 +16,7 @@ public class App {
 
         //bikin Group
         ChatRoom newChatRoom = new ChatRoom("Group IF");
-        newChatRoom.registerUser(budi);
+        newChatRoom.registerUser(budi); //berarti budi admin
         newChatRoom.registerUser(andi);
         newChatRoom.registerUser(ujang);
         newChatRoom.registerUser(hana);
@@ -34,7 +34,13 @@ public class App {
 
         //coba badwords message
         newChatRoom.sendBroadcast(andi, "ngentod lu semua!");
-        
+
+
+        //coba muted member
+        newChatRoom.muteUser(hana);
+
+        //coba hana kirip
+        newChatRoom.sendBroadcast(hana, "Halo aku dimute!");
 
 
     }

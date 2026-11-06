@@ -5,7 +5,7 @@ public class ChatRoom {
     String roomName;
     List<User> members = new ArrayList<>();
     List<String> badWords = new ArrayList<>();
-    
+    List<User> mutedMember = new ArrayList<>();
 
     public ChatRoom(String roomName){
         this.roomName = roomName;
@@ -22,9 +22,23 @@ public class ChatRoom {
 
         for(int i = 0;  i < members.size() ; i++){
             if(!members.get(i).getName().equalsIgnoreCase(sender.getName())){
-                members.get(i).receiveMessage(sender, filterMessage(message));
+            
+                if(!checkMemberStatus(sender)){
+                    members.get(i).receiveMessage(sender, filterMessage(message));
+                }
             }
         }
+    }
+
+    //tambah method untuk memerika aapakah user ini di muted atau tidak
+
+    public boolean checkMemberStatus(User user){
+        for ( int i = 0 ; i < mutedMember.size() ; i++){
+            if(user.equals(mutedMember.get(i))){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void sendPrivateMessage(User sender, String recipientName, String message){
@@ -58,6 +72,23 @@ public class ChatRoom {
             }
         }
         return message;
+    }
+
+    public void removeUser(User user){
+        if(!user.equals(members.get(0))){
+            members.remove(user);
+        } else {
+            members.remove(user);
+            System.out.println("Anda Keluar Dari Grup !");
+        }
+    }
+    
+    public void muteUser(User user){
+        if(!user.equals(members.get(0))){
+            mutedMember.add(user);
+        } else {
+            System.out.println("Tidak bisa ngemute diri sendiri!");
+        }
     }
 
 }
